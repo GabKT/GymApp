@@ -1,17 +1,21 @@
-package Entities;
+package org.gabkt.GymApp.Entities;
 
 import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.Objects;
 
-@Table(name = "Associacao")
+@Table(name = "associacao")
 @Entity
 public class Associacao {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Integer Id;
+    private String Id;
+    @OneToOne
+    @JoinColumn(name = "aluno_id")
     private Aluno aluno;
+    @OneToOne
+    @JoinColumn(name = "professor_id")
     private Professor professor;
     private String statusAssoc;
     private Instant dataAssoc;
@@ -27,11 +31,11 @@ public class Associacao {
         this.dataAssoc = dataAssoc;
     }
 
-    public Integer getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         Id = id;
     }
 

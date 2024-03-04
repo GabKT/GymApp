@@ -1,13 +1,14 @@
-package Entities;
+package org.gabkt.GymApp.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.Instant;
 import java.util.List;
 
-@Table(name = "Professor")
 @Entity
 public class Professor extends Pessoa {
     @Id
@@ -15,18 +16,19 @@ public class Professor extends Pessoa {
     private String cargo;
     private Double salario;
     private Instant ingresso;
+    @JsonIgnore
+    @OneToMany(mappedBy = "professor")
     private List<Aluno> alunos;
 
     public Professor() {
 
     }
 
-    public Professor(String nome, Integer cpf, Integer rg, Instant dataNasc, Integer celular, String endereco, String cargo, Double salario, Instant ingresso, List<Aluno> alunos) {
+    public Professor(String nome, Integer cpf, Integer rg, Instant dataNasc, Integer celular, String endereco, String cargo, Double salario, Instant ingresso) {
         super(nome, cpf, rg, dataNasc, celular, endereco);
         this.cargo = cargo;
         this.salario = salario;
         this.ingresso = ingresso;
-        this.alunos = alunos;
     }
 
     public String getId() {

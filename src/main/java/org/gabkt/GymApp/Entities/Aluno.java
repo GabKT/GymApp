@@ -1,10 +1,9 @@
-package Entities;
+package org.gabkt.GymApp.Entities;
 
 import jakarta.persistence.*;
 
 import java.time.Instant;
 
-@Table(name = "Aluno")
 @Entity
 public class Aluno extends Pessoa {
     @Id
@@ -13,8 +12,12 @@ public class Aluno extends Pessoa {
     private Instant dataPag;
     private String statusPag;
     private String obs;
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
     private Professor professor;
     private Instant ingresso;
+    @OneToOne
+    @JoinColumn(name = "ficha_id")
     private Treino ficha;
 
     public Aluno() {

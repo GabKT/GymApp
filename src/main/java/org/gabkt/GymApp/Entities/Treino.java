@@ -1,10 +1,10 @@
-package Entities;
+package org.gabkt.GymApp.Entities;
 
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Table(name = "Treino")
+@Table(name = "treino")
 @Entity
 public class Treino {
     @Id

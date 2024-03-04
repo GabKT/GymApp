@@ -1,12 +1,13 @@
-package Entities;
+package org.gabkt.GymApp.Entities;
 
 import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.Objects;
 
-@Table(name = "Pessoa")
+@Table(name = "pessoa")
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Pessoa {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
