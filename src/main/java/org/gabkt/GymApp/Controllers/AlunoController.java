@@ -1,6 +1,7 @@
 package org.gabkt.GymApp.Controllers;
 
 
+import org.gabkt.GymApp.Entities.Aluno;
 import org.gabkt.GymApp.Entities.RequestAlunoDTO;
 import org.gabkt.GymApp.Services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
     @PostMapping
-    public ResponseEntity<RequestAlunoDTO> insertAluno(@RequestBody RequestAlunoDTO raAluno){
-        System.out.println(raAluno);
-        return ResponseEntity.ok(raAluno);
+    public ResponseEntity<Aluno> insertAluno(@RequestBody RequestAlunoDTO raAluno){
+        Aluno aluno = alunoService.insertAluno(raAluno);
+        return ResponseEntity.ok(aluno);
     }
 }

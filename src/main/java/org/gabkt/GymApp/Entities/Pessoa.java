@@ -3,6 +3,7 @@ package org.gabkt.GymApp.Entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Table(name = "pessoa")
@@ -12,17 +13,17 @@ public abstract class Pessoa {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String nome;
-    private Integer cpf;
-    private Integer rg;
-    private Instant dataNasc;
-    private Integer celular;
+    private Long cpf;
+    private Long rg;
+    private LocalDate dataNasc;
+    private Long celular;
     private String endereco;
 
     public Pessoa() {
 
     }
 
-    public Pessoa(String nome, Integer cpf, Integer rg, Instant dataNasc, Integer celular, String endereco) {
+    public Pessoa(String nome, Long cpf, Long rg, LocalDate dataNasc, Long celular, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -39,35 +40,35 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
-    public Integer getRg() {
+    public Long getRg() {
         return rg;
     }
 
-    public void setRg(Integer rg) {
+    public void setRg(Long rg) {
         this.rg = rg;
     }
 
-    public Instant getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(Instant dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
 
-    public Integer getCelular() {
+    public Long getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 

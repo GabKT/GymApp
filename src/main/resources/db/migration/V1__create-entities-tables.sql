@@ -9,10 +9,10 @@ CREATE TABLE treino (
 CREATE TABLE Pessoa (
     id UUID PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    cpf INTEGER UNIQUE NOT NULL,
-    rg INTEGER UNIQUE NOT NULL,
+    cpf BIGINT UNIQUE NOT NULL,
+    rg BIGINT UNIQUE NOT NULL,
     dataNasc TIMESTAMP NOT NULL,
-    celular INTEGER,
+    celular BIGINT,
     endereco VARCHAR(255)
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE Professor (
 CREATE TABLE Aluno (
     id UUID PRIMARY KEY,
     plano VARCHAR(100),
-    dataPag TIMESTAMP,
+    dataPag INTEGER,
     statusPag VARCHAR(50),
     obs TEXT,
     ingresso TIMESTAMP,
