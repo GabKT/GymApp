@@ -1,26 +1,21 @@
 package org.gabkt.GymApp.Entities;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 @Entity
+@Table(name = "aluno")
 public class Aluno extends Pessoa {
-    @Id
-    private String id;
-    private String plano;
+    @Column(name = "datapag")
     private Integer dataPag;
+    @Column(name = "statuspag")
     private String statusPag;
     private String obs;
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Professor professor;
-    private LocalDate ingresso;
+    private Instant ingresso;
     @OneToOne
     @JoinColumn(name = "ficha_id")
     private Treino ficha;
@@ -29,9 +24,8 @@ public class Aluno extends Pessoa {
 
     }
 
-    public Aluno(String nome, Long cpf, Long rg, LocalDate dataNasc, Long celular, String endereco, String plano, Integer dataPag, String statusPag, String obs, Professor professor, LocalDate ingresso, Treino ficha) {
+    public Aluno(String nome, Long cpf, Long rg, Long dataNasc, Long celular, String endereco, Integer dataPag, String statusPag, String obs, Professor professor, Instant ingresso, Treino ficha) {
         super(nome, cpf, rg, dataNasc, celular, endereco);
-        this.plano = plano;
         this.dataPag = dataPag;
         this.statusPag = statusPag;
         this.obs = obs;
@@ -41,22 +35,13 @@ public class Aluno extends Pessoa {
     }
 
     public Aluno(RequestAlunoDTO dto) {
-        super(dto.nome(), dto.cpf(), dto.rg(), dto.dataNasc(), dto.celular(), dto.endereco());
-        this.plano = dto.plano();
-        this.dataPag = dto.dataPag();
+        super(dto.nome(), dto.cpf(), dto.rg(), dto.datanasc(), dto.celular(), dto.endereco());
+        this.dataPag = dto.datapag();
         this.statusPag = null;
         this.obs = dto.obs();
         this.professor = null;
-        this.ingresso = dto.ingresso();
+        this.ingresso = Instant.ofEpochMilli(dto.ingresso() - 10800000);
         this.ficha = null;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getStatusPag() {
@@ -65,14 +50,6 @@ public class Aluno extends Pessoa {
 
     public void setStatusPag(String statusPag) {
         this.statusPag = statusPag;
-    }
-
-    public String getPlano() {
-        return plano;
-    }
-
-    public void setPlano(String plano) {
-        this.plano = plano;
     }
 
     public Integer getDataPag() {
@@ -99,11 +76,11 @@ public class Aluno extends Pessoa {
         this.professor = professor;
     }
 
-    public LocalDate getIngresso() {
+    public Instant getIngresso() {
         return ingresso;
     }
 
-    public void setIngresso(LocalDate ingresso) {
+    public void setIngresso(Instant ingresso) {
         this.ingresso = ingresso;
     }
 
@@ -118,7 +95,6 @@ public class Aluno extends Pessoa {
     @Override
     public String toString() {
         return super.toString() + "Aluno{" +
-                "plano='" + plano + '\'' +
                 ", dataPag=" + dataPag +
                 ", obs='" + obs + '\'' +
                 ", professor=" + professor +

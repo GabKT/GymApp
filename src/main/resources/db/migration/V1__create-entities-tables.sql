@@ -17,7 +17,7 @@ CREATE TABLE Pessoa (
 );
 
 CREATE TABLE Professor (
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY REFERENCES Pessoa(id),
     cargo VARCHAR(100),
     salario DOUBLE PRECISION,
     ingresso TIMESTAMP,
@@ -25,8 +25,7 @@ CREATE TABLE Professor (
 );
 
 CREATE TABLE Aluno (
-    id UUID PRIMARY KEY,
-    plano VARCHAR(100),
+    id UUID PRIMARY KEY REFERENCES Pessoa(id),
     dataPag INTEGER,
     statusPag VARCHAR(50),
     obs TEXT,

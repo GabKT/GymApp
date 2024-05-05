@@ -3,13 +3,14 @@ package org.gabkt.GymApp.Entities;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Table(name = "treino")
 @Entity
 public class Treino {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String nome;
     private Integer serie;
     private Integer repeticoes;
@@ -19,19 +20,18 @@ public class Treino {
 
     }
 
-    public Treino(Integer id, String nome, Integer serie, Integer repeticoes, Character categoria) {
-        this.id = id;
+    public Treino(String nome, Integer serie, Integer repeticoes, Character categoria) {
         this.nome = nome;
         this.serie = serie;
         this.repeticoes = repeticoes;
         Categoria = categoria;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

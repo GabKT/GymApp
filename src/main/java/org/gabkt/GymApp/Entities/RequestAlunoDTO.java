@@ -1,19 +1,16 @@
 package org.gabkt.GymApp.Entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
 public record RequestAlunoDTO(
         String nome,
         Long cpf,
         Long rg,
-        @JsonFormat(pattern = "dd/MM/yyyy") LocalDate dataNasc,
+        Long datanasc,
         Long celular,
         String endereco,
-        String plano,
-        Integer dataPag,
+        Integer datapag,
         String obs,
-        String professor,
-        @JsonFormat(pattern = "dd/MM/yyyy") LocalDate ingresso
+        Long ingresso
 ) {}

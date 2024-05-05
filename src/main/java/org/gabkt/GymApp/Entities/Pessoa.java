@@ -3,19 +3,20 @@ package org.gabkt.GymApp.Entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 @Table(name = "pessoa")
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pessoa {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
     private String nome;
     private Long cpf;
     private Long rg;
-    private LocalDate dataNasc;
+    @Column(name = "datanasc")
+    private Instant dataNasc;
     private Long celular;
     private String endereco;
 
@@ -23,13 +24,21 @@ public abstract class Pessoa {
 
     }
 
-    public Pessoa(String nome, Long cpf, Long rg, LocalDate dataNasc, Long celular, String endereco) {
+    public Pessoa(String nome, Long cpf, Long rg, Long dataNasc, Long celular, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
-        this.dataNasc = dataNasc;
+        this.dataNasc = Instant.ofEpochMilli(dataNasc);
         this.celular = celular;
         this.endereco = endereco;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -56,11 +65,11 @@ public abstract class Pessoa {
         this.rg = rg;
     }
 
-    public LocalDate getDataNasc() {
+    public Instant getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(LocalDate dataNasc) {
+    public void setDataNasc(Instant dataNasc) {
         this.dataNasc = dataNasc;
     }
 

@@ -7,16 +7,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
+@Table(name = "professor")
 public class Professor extends Pessoa {
-    @Id
-    private String id;
     private String cargo;
     private Double salario;
-    private LocalDate ingresso;
+    private Instant ingresso;
     @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private List<Aluno> alunos;
@@ -25,19 +24,11 @@ public class Professor extends Pessoa {
 
     }
 
-    public Professor(String nome, Long cpf, Long rg, LocalDate dataNasc, Long celular, String endereco, String cargo, Double salario, LocalDate ingresso) {
+    public Professor(String nome, Long cpf, Long rg, Long dataNasc, Long celular, String endereco, String cargo, Double salario, Instant ingresso) {
         super(nome, cpf, rg, dataNasc, celular, endereco);
         this.cargo = cargo;
         this.salario = salario;
         this.ingresso = ingresso;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getCargo() {
@@ -56,11 +47,11 @@ public class Professor extends Pessoa {
         this.salario = salario;
     }
 
-    public LocalDate getIngresso() {
+    public Instant getIngresso() {
         return ingresso;
     }
 
-    public void setIngresso(LocalDate ingresso) {
+    public void setIngresso(Instant ingresso) {
         this.ingresso = ingresso;
     }
 
